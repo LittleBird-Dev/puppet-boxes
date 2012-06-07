@@ -7,7 +7,8 @@ class boxes::developmentbox {
     Exec["apt_update"] -> Package <| |>
 
     # put here your tools
-    $package_list = ['vim', 'aptitude', 'sudo', 'mc', 'screen']
+    # git-flow comes from squeeze-backports
+    $package_list = ['vim', 'aptitude', 'sudo', 'mc', 'screen', 'git-flow']
 
     package {$package_list:
         ensure => present
