@@ -6,9 +6,9 @@ Vagrant::Config.run do |config|
   config.vm.define :developmentbox do |developmentbox|
 
     # on which base box this box will be setup from
-    developmentbox.vm.box = "stagebox"
+    developmentbox.vm.box = "developmentbox_pre"
 
-    # developmentbox.vm.boot_mode = :gui
+    developmentbox.vm.boot_mode = :gui
 
     # developmentbox.vm.forward_port 80, 8080
     # developmentbox.vm.share_folder "v-data", "/vagrant_data", "../data"

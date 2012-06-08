@@ -16,5 +16,21 @@ class boxes::basebox {
   }
 
   # your stuff here
+  
+    apt::source { "debian_squeeze_german":
+        location          => "http://ftp.de.debian.org/debian/",
+        release           => "squeeze",
+        repos             => "main contrib",
+        include_src       => true
+    }
+  
+  # delete prensent mirrors
+    file { "/etc/apt/sources.list":
+        ensure => absent,
+    }
+    
+    class { 'locales':
+     locales => [ 'de_DE.UTF-8 UTF-8'],
+   }    
 }
 

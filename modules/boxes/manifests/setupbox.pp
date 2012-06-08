@@ -7,4 +7,31 @@ class boxes::setupbox {
     Exec["apt_update"] -> Package <| |>
 
     # your stuff here
+    
+    #install apache + php
+    include apache::php
+    
+    # additional php-packages
+    package{ ["php5-intl","php5-mysql"]:
+      ensure => "installed",
+      require => Class["apache::php"],
+    }
+   
+    class { 'mysql::server':
+      config_hash => { 'root_password' => 'vagrant' }
+    }
+   
+    #install augeas
+    include augeas
+    
+    #install apc
+    #include apc
+    
+    # add user vagrant to group www-data
+    user { "vagrant":
+        groups => "www-data",
+    }
+    
+    Class["augeas"] -> Class["apache::php"] -> Class["mysql::server"]
+    
 }
